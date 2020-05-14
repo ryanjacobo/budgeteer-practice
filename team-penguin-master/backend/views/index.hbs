@@ -1,27 +1,41 @@
-<h1>{{title0}}</h1>
-<p>Welcome to {{title0}}</p>
-
-{{!-- <div>Hi! My name is {{name}}!</div> --}}
-
-{{!-- <ul>
-    {{#each users}}
-    <li>{{this}}</li>
-    {{/each}}
-</ul>
-
-<p>Welcome to {{title2}}</p>
-<ul>
-    {{#each bikes}}
-    <li>{{type}} : {{purpose}}</li>
-    {{/each}}
-</ul> --}}
+<h1>Hello, {{person.firstname}}</h1>
+{{!-- <p>username: {{person.username}}</p> --}}
+<p>YOUR BALANCE: ${{person.balance}}</p>
+<P>INCOME: ${{person.income}}</P>
+<P>EXPENSE: ${{person.expense}}</P>
 
 <form action="/" method="POST">
     <div>
+        <label for="type">Type:</label>
+        <select id="type" name="type">
+            <option for="income">Income</option>
+            <option for="expense">Expense</option>
+        </select>
+    </div>
+    <div>
+        <label for="amount">Amount:</label>
+        <input id="amount" name="amount" />
+    </div>
+     <div>
         <label for="description">Description:</label>
         <input id="description" name="description" />
     </div>
     <div>
         <button type="submit">submit</button>
+    </div>
+    <div>
+        <p>TRANSACTIONS</p>
+    </div>
+    <div>
+        <ul>
+            {{#each amounts}}
+            <li>{{amount}}</li>
+            {{/each}}
+        </ul>
+        <ul>
+            {{#each descriptions}}
+            <li>{{description}}</li>
+            {{/each}}
+        </ul>
     </div>
 </form>

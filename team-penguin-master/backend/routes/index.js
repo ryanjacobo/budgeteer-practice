@@ -1,12 +1,42 @@
 var express = require('express');
 var router = express.Router();
+var users = require('../models/users');
+var mysql = require('mysql2');
+
+//Connect MySQL to Express
+var mysql = require('mysql');
+
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'Password1!',
+  database: 'budgetapp',
+});
+
+connection.connect(
+  function(err){
+    if (err){
+      console.error(err.message);
+    }
+    console.log('Yay! You are connected to the database!');
+  }
+)
+
+router.get('/', function(req, res){
+  res.render('index', {title0: 'Budgeteer'});
+
+  Response.set('Content-Type', 'text/html');
+});
+
+router.get('/person/:id', function(req, res, next) {
+  let person = users.people.find(peep => {
+    return peep.id === parseInt(req.params.id);
+  });
+  res.render('index', {person});
+});
 
 // Checking against an Array
 let descriptions = ['rent', 'car payment', 'loan', 'retirement plan', 'phone service'];
-
-router.get('/', function(req, res){
-  res.render('index', {title0: 'Budget-Practice'});
-});
 
 router.post('/', function(req, res, next){
   let bodyDescription = req.body;
@@ -16,6 +46,49 @@ router.post('/', function(req, res, next){
   else {
     descriptions.push(bodyDescription.description);
     res.send(descriptions);
+
+    // If you have descriptions.hbs
+    // res.render("descriptions", descriptions);
+  }
+
+  // Post Description and Amount
+  // console.log(req.body);
+  // const newTransaction = {
+  //   type: req.body.type,
+  //   description: req.body.description,
+  //   amount: req.body.amount
+  // };
+
+  // const selectTransaction = `SELECT * 
+  // FROM budgetapp 
+  // WHERE description = '${newTransaction.amount}'
+  // AND amount = '${newTransaction.description}'`;
+
+  // connection.query(selectTransaction, function(err, result){
+  //   let newTransactionQuery = `INSERT INTO actor(description, amount)
+  //   VALUES('${newTransaction.amount}', '${newTransaction.description}')`;
+
+  //   connection.query(newTransactionQuery, function(err, insertResult) {
+  //     if (err) {
+  //       res.render('error', {message: 'Oops, something went wrong'});
+  //     } else {
+  //       res.redirect('/');
+  //     }
+  //     });
+
+  });
+
+
+let amount = ['1500', '250', '200', '200', '90'];
+
+router.post('/', function(req, res, next){
+  let bodyAmount = req.amount;
+  if (descriptions.includes(bodyAmount.amount)){
+    res.send('Already have ' + bodyAmount.amount + ', thanks.')
+  }
+  else {
+    descriptions.push(bodyAmount.amount);
+    res.send(amount);
 
     // If you have descriptions.hbs
     // res.render("descriptions", descriptions);
