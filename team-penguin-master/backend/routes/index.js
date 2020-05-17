@@ -36,20 +36,20 @@ router.get('/person/:id', function(req, res, next) {
 });
 
 // Checking against an Array
-let descriptions = ['rent', 'car payment', 'loan', 'retirement plan', 'phone service'];
+// let descriptions = ['rent', 'car payment', 'loan', 'retirement plan', 'phone service'];
 
 router.post('/', function(req, res, next){
-  let bodyDescription = req.body;
-  if (descriptions.includes(bodyDescription.description)){
-    res.send('Already have ' + bodyDescription.description + ', thanks.')
-  }
-  else {
-    descriptions.push(bodyDescription.description);
-    res.send(descriptions);
+  // let bodyDescription = req.body;
+  // if (descriptions.includes(bodyDescription.description)){
+  //   res.send('Already have ' + bodyDescription.description + ', thanks.')
+  // }
+  // else {
+  //   descriptions.push(bodyDescription.description);
+  //   res.send(descriptions);
 
     // If you have descriptions.hbs
     // res.render("descriptions", descriptions);
-  }
+  // }
 
   // Post Description and Amount
   // console.log(req.body);
@@ -75,25 +75,26 @@ router.post('/', function(req, res, next){
   //       res.redirect('/');
   //     }
   //     });
-
+  //   })
+    
   });
 
 
-let amount = ['1500', '250', '200', '200', '90'];
+// let amount = ['1500', '250', '200', '200', '90'];
 
-router.post('/', function(req, res, next){
-  let bodyAmount = req.amount;
-  if (descriptions.includes(bodyAmount.amount)){
-    res.send('Already have ' + bodyAmount.amount + ', thanks.')
-  }
-  else {
-    descriptions.push(bodyAmount.amount);
-    res.send(amount);
+// router.post('/', function(req, res, next){
+//   let bodyAmount = req.amount;
+//   if (descriptions.includes(bodyAmount.amount)){
+//     res.send('Already have ' + bodyAmount.amount + ', thanks.')
+//   }
+//   else {
+//     descriptions.push(bodyAmount.amount);
+//     res.send(amount);
 
-    // If you have descriptions.hbs
-    // res.render("descriptions", descriptions);
-  }
-});
+//     // If you have descriptions.hbs
+//     // res.render("descriptions", descriptions);
+//   }
+// });
 
 // Render the index.hbs 
 // router.get('/', function(req, res, next) {
