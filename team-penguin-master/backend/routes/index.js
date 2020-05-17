@@ -6,21 +6,25 @@ var mysql = require('mysql2');
 //Connect MySQL to Express
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'Password1!',
-  database: 'budgetapp',
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
 });
 
-connection.connect(
-  function(err){
-    if (err){
-      console.error(err.message);
-    }
-    console.log('Yay! You are connected to the database!');
-  }
-)
+// var connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: 'Password1!',
+//   database: 'budgetapp',
+// });
+
+// connection.connect(
+//   function(err){
+//     if (err){
+//       console.error(err.message);
+//     }
+//     console.log('Yay! You are connected to the database!');
+//   }
+// )
 
 router.get('/', function(req, res){
   res.render('index', {title0: 'Budgeteer'});
@@ -38,7 +42,7 @@ router.get('/person/:id', function(req, res, next) {
 // Checking against an Array
 // let descriptions = ['rent', 'car payment', 'loan', 'retirement plan', 'phone service'];
 
-router.post('/', function(req, res, next){
+// router.post('/', function(req, res, next){
   // let bodyDescription = req.body;
   // if (descriptions.includes(bodyDescription.description)){
   //   res.send('Already have ' + bodyDescription.description + ', thanks.')
@@ -77,7 +81,7 @@ router.post('/', function(req, res, next){
   //     });
   //   })
     
-  });
+  // });
 
 
 // let amount = ['1500', '250', '200', '200', '90'];
